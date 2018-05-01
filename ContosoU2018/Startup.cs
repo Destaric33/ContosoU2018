@@ -33,6 +33,12 @@ namespace ContosoU2018
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            //SMallaley: Add school services (Registry Via dependancy Injection)
+            services.AddDbContext<SchoolContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //End SMallaley
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -54,6 +60,10 @@ namespace ContosoU2018
             }
 
             app.UseStaticFiles();
+
+            //StevenMallaley
+            //Custom error pages
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.UseAuthentication();
 
