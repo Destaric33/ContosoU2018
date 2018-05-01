@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using ContosoU2018.Models;
 
 namespace ContosoU2018.Controllers
+    //When did you get here?
 {
     public class HomeController : Controller
     {
