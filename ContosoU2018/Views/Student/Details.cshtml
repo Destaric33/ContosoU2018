@@ -11,7 +11,8 @@
         <hr />
         <div class="row">
             <div class="col-md-4 my-2">
-            <img class="img-fluid" src="http://placehold.it/200x200" alt="Student" />
+                @*<img class="img-fluid" src="http://placehold.it/200x200" alt="Student" />*@
+                <img class="img-fluid" src="~/images/students/@(Model.ID).jpg" alt="@Model.FullName" />
             </div>
             <div class="col-md-8">
                 <dl class="row border">
@@ -69,6 +70,45 @@
 
 
         
+    </div>
+
+    @*Enrollment Data*@
+    <div class="my-3">
+        <h4>Your Courses</h4>
+        @if (Model.Enrollments.Count != 0) //Make sure we have enrollments.
+        {
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Course Title</th>
+                        <th>Grade</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @*Loop once for each student enrollment*@
+                    @foreach(var item in Model.Enrollments)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(e => item.Course.Title)</td>
+                            <td>@Html.DisplayFor(e=>item.Grade)</td>
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        }
+        else
+        {
+            //No Enrollments - show alert
+            <div class="alert alert-warning" role="alert">
+                This Student is not enrolled in any courses yet!!
+            </div>
+        }
+
     </div>
 
     <div>
